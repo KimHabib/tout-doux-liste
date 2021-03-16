@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo"><p>Tout Doux Liste</p></div>
+    </header>
+    <div class="center">
+      <div class="intro">
+        <h1>Tout doux liste</h1>
+        <p class="intro">
+          Overwhelmed by all the things you need to do? Here's a tout doux
+          liste, to make all things more tout doux.
+        </p>
+      </div>
+      <main class="list">
+        <form>
+          <input type="text" />
+          <button>Submit</button>
+        </form>
+        <ul class="to-do-list"></ul>
+
+        <!-- https://codepen.io/kvana/pen/LLJmZb -->
+        <button id="show_all" onclick="show_all()">All</button>
+        <button id="show_active" onclick="show_red()">Active</button>
+        <button id="show_completed" onclick="show_blue()">Completed</button>
+      </main>
+    </div>
+
+    <aside><img src="images/cat.png" /></aside>
+
+    <div class="dark">
+      <aside><img src="images/cat.png" /></aside>
+    </div>
+  </body>
+</html>
