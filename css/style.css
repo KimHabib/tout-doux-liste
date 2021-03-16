@@ -1,14 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
 h1 {
 font-size: 40px;
 }
 
 body {
     font-family: 'Nunito', sans-serif;
+    font-size: 16px;
     }
     
 .intro {
     text-align: center;
     max-width: 500px;
+    padding-bottom: 44px;
 }
 
 .center {
@@ -19,3 +25,41 @@ body {
     align-items: center;
 }
 
+ul {
+    list-style-type: none;
+   padding-left: 0px;
+}
+
+li {
+    background-color: black;
+    font-size: 16px;
+    color: white;
+    min-width: 500px;
+    padding:16px;
+    
+}
+
+input {
+    background-color: black;
+    border-radius:  4px;
+    min-height: 44px;
+    min-width: 400px;
+    color: white;
+    font-size: 16px;
+}
+
+.submit-btn {
+    background-color: grey;
+    border-radius:  4px;
+    min-height: 44px;
+    min-width: 100px;
+    color: white;
+  
+    
+}
+
+.tag {
+border: none;
+background: none;
+
+}
