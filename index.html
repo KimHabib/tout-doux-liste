@@ -1,3 +1,5 @@
+<!-- https://freshman.tech/todo-list/ -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,10 +10,16 @@
       content="width=
     , initial-scale=1.0"
     />
-    <title>Document</title>
+    <title>Tout Doux Liste</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Changa+One&family=Oi&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
@@ -29,30 +37,35 @@
         </p>
       </div>
       <main class="list">
-        <form>
-          <input type="text" />
-          <button class="submit-btn">Submit</button>
+        <form class="input-area">
+          <input
+            type="text"
+            class="textField"
+            placeholder="What do you need to do?"
+          />
+          <button id="submit-btn" class="submit-btn">Add</button>
         </form>
         <ul id="to-do-list">
-          <li>hello this is gepetto</li>
+          <li>
+            <input type="checkbox" class="checkbox" />hello this is gepetto
+          </li>
         </ul>
 
-        <!-- https://codepen.io/kvana/pen/LLJmZb -->
-        <button id="show_all" onclick="show_all()" class="tag">All</button>
-        <button id="show_active" onclick="show_red()" class="tag">
-          Active
-        </button>
-        <button id="show_completed" onclick="show_blue()" class="tag">
-          Completed
-        </button>
+        <div class="bottom-line">
+          <!-- https://codepen.io/kvana/pen/LLJmZb -->
+          <button id="show_all" onclick="show_all()" class="tag">All</button>
+          <button id="show_active" onclick="show_red()" class="tag">
+            🐈 Active
+          </button>
+          <button id="show_completed" onclick="show_blue()" class="tag">
+            😻 Completed
+          </button>
+          <button id="clear-complete-btn" class="tag">Clear complete</button>
+        </div>
       </main>
+      <img src="images/cat.png" id="lowerLeft" />
     </div>
 
-    <aside><img src="images/cat.png" /></aside>
-
-    <div class="dark">
-      <aside><img src="images/cat.png" /></aside>
-    </div>
     <script src="main.js"></script>
   </body>
 </html>
