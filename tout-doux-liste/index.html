@@ -1,0 +1,71 @@
+<!-- https://freshman.tech/todo-list/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Tout Doux Liste</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Changa+One&family=Oi&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="center">
+      <div class="intro">
+        <h1>Tout doux liste</h1>
+        <p class="intro">
+          Overwhelmed by all the things you need to do? Here's a tout doux
+          liste, to make all things more tout doux.
+        </p>
+      </div>
+      <main class="list">
+        <form id="add-item">
+          <input
+            type="text"
+            class="textField"
+            placeholder="What do you need to do?"
+            minlength="3"
+            required
+          />
+          <input type="submit" id="submit-btn" class="submit-btn" value="Add" />
+        </form>
+        <ul id="to-do-list">
+          <li class="placeholder">
+            <picture>
+              <img src="images/busy-cat.gif" class="busy-cat" s />
+            </picture>
+          </li>
+        </ul>
+
+        <div class="bottom-line hide">
+          <button id="show_all" class="tag">All</button>
+          <button id="show_active" class="tag">🐈 Active</button>
+          <button id="show_completed" class="tag">😻 Completed</button>
+          <button id="clear-complete-btn" class="tag">Clear complete</button>
+        </div>
+      </main>
+      <img src="images/cat.png" id="cat" />
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
