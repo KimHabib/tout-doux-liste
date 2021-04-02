@@ -6,10 +6,11 @@ const addItemForm = document.querySelector("#add-item");
 addItemForm.addEventListener("submit", addNewItem);
 
 // grabs audio files to be played
-const addItemAudio = new Audio("./cat-meow.wav");
-const clearCompletedAudio = new Audio("./cat_completed.wav");
-const emptyStateAudio = new Audio("./angry-cat.wav");
-const successStateAudio = new Audio("./tambourine.wav");
+const meowAudio = new Audio("./cat-meow.wav");
+const cuteMeowAudio = new Audio("./cute-meow.wav");
+const purrAudio = new Audio("./cat-purr.wav");
+const angryAudio = new Audio("./angry-cat.wav");
+const tambourineAudio = new Audio("./tambourine.wav");
 // targeting the text field so I can reference it in a function
 const itemName = document.querySelector(".textField");
 // targeting the cat picture so I can reference it in a function
@@ -19,7 +20,7 @@ catPic.addEventListener("mouseenter", playCatNoise);
 // function catNoise starts here
 function playCatNoise() {
   // calls the addItemAudio function so the sound plays
-  clearCompletedAudio.play();
+  cuteMeowAudio.play();
 }
 
 // select the bottom-line container
@@ -70,7 +71,7 @@ function specialEffects() {
   catPic.classList.remove("hide");
   catPic.classList.add("bounce");
   // play audio file we grabbed above
-  addItemAudio.play();
+  meowAudio.play();
   // hides the empty state
   noneCompleted.classList.add("hide");
 }
@@ -142,10 +143,10 @@ function showCompleted() {
   }
   if (checkboxList.length == 0) {
     noneCompleted.classList.remove("hide");
-    emptyStateAudio.play();
+    angryAudio.play();
   } else {
     wellDone.classList.remove("hide");
-    successStateAudio.play();
+    tambourineAudio.play();
   }
 }
 // show completed items function ends here
@@ -175,9 +176,12 @@ function clearCompleted() {
     // remove the current element from the document - we're targeting the parent so it doesn't remove the checkbox only
     completedElements[i].parentNode.remove();
   }
-
-  clearCompletedAudio.play();
-  wellDone.classList.add("hide");
+  if (completedElements.length == 0) {
+    noneCompleted.classList.remove("hide");
+    angryAudio.play();
+  } else {
+    purrAudio.play();
+  }
 }
 // the clearCompleted function ends here
 
