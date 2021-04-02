@@ -22,50 +22,64 @@
       href="https://fonts.googleapis.com/css2?family=Changa+One&family=Oi&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <header>
-      <div class="logo"><p>Tout Doux Liste</p></div>
-    </header>
     <div class="center">
       <div class="intro">
-        <h1>Tout doux liste</h1>
+        <a href="index.html"> <h1>Tout doux liste</h1></a>
         <p class="intro">
-          Overwhelmed by all the things you need to do? Here's a tout doux
-          liste, to make all things more tout doux.
+          Overwhelmed by all your to-dos?
+          <br />Try a tout-doux.
         </p>
       </div>
       <main class="list">
-        <form class="input-area">
+        <form id="add-item">
           <input
             type="text"
             class="textField"
             placeholder="What do you need to do?"
+            minlength="3"
+            required
           />
-          <button id="submit-btn" class="submit-btn">Add</button>
+          <input
+            type="submit"
+            id="submit-btn"
+            class="submit-btn"
+            value="Add item"
+          />
         </form>
-        <ul id="to-do-list">
-          <li>
-            <input type="checkbox" class="checkbox" />hello this is gepetto
-          </li>
-        </ul>
+        <div class="placeholder">
+          <picture>
+            <img src="images/busy-cat.gif" class="busy-cat" />
+          </picture>
+        </div>
+        <ul id="to-do-list"></ul>
+        <div class="none-completed hide">
+          <picture>
+            <img src="images/lazy-cat.gif" class="lazy-cat" />
+          </picture>
+        </div>
+        <div class="well-done hide">
+          <picture>
+            <img src="images/happy-cat.gif" class="well-done" />
+          </picture>
+        </div>
 
-        <div class="bottom-line">
-          <!-- https://codepen.io/kvana/pen/LLJmZb -->
-          <button id="show_all" onclick="show_all()" class="tag">All</button>
-          <button id="show_active" onclick="show_red()" class="tag">
-            🐈 Active
-          </button>
-          <button id="show_completed" onclick="show_blue()" class="tag">
-            😻 Completed
-          </button>
-          <button id="clear-complete-btn" class="tag">Clear complete</button>
+        <div class="bottom-line hide">
+          <button id="show_all" class="tag">See all</button>
+          <button id="show_active" class="tag">See active</button>
+          <button id="show_completed" class="tag">See completed</button>
+          <button id="clear-complete-btn" class="tag">Clear completed</button>
         </div>
       </main>
-      <img src="images/cat.png" id="lowerLeft" />
     </div>
-
+    <img src="images/cat.png" id="cat" class="hide" />
+    <img src="images/mwrar.png" id="mwrar" />
     <script src="main.js"></script>
   </body>
 </html>
