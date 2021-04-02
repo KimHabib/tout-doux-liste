@@ -66,7 +66,7 @@ function specialEffects() {
   bottomLine.classList.remove("hide");
   // hide the placeholder
   placeholder.classList.add("hide");
-  wellDone.classList.add("hide");
+  hideWellDone();
   // displays the cat on the bottom left
   catPic.classList.remove("hide");
   catPic.classList.add("bounce");
@@ -114,7 +114,7 @@ function showAll() {
     showListItems[i].style.display = "flex";
   }
   noneCompleted.classList.add("hide");
-  wellDone.classList.add("hide");
+  hideWellDone();
 }
 // show all ends here
 
@@ -145,11 +145,22 @@ function showCompleted() {
     noneCompleted.classList.remove("hide");
     angryAudio.play();
   } else {
-    wellDone.classList.remove("hide");
-    tambourineAudio.play();
+    showWellDone();
   }
 }
 // show completed items function ends here
+
+function showWellDone() {
+  wellDone.classList.remove("hide");
+  tambourineAudio.loop = true;
+  tambourineAudio.play();
+}
+
+function hideWellDone() {
+  wellDone.classList.add("hide");
+  tambourineAudio.loop = false;
+  tambourineAudio.pause();
+}
 
 // show active items function starts here
 
@@ -165,6 +176,9 @@ function showActive() {
   noneCompleted.classList.add("hide");
   wellDone.classList.add("hide");
 }
+
+const clearCompletedButton = document.querySelector("#clear-complete-btn");
+clearCompletedButton.addEventListener("click", clearCompleted);
 
 // the clearCompleted function starts here
 
@@ -184,9 +198,6 @@ function clearCompleted() {
   }
 }
 // the clearCompleted function ends here
-
-const clearCompletedButton = document.querySelector("#clear-complete-btn");
-clearCompletedButton.addEventListener("click", clearCompleted);
 
 // 1. search the list for all completed li - go through checkboxes again and check for completed classes
 // 2. we want to prevent them from reappearing when you click show all, so better to remove them from the page - https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove
