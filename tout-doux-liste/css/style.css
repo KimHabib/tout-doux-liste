@@ -37,16 +37,30 @@ main {
 }
 
 #cat {
-  position: absolute;
+  position: fixed;
   bottom: -25px;
   left: 0;
   display: initial;
 }
 
-#cat.on-submit {
-  transition: transform 0.3s ease;
+#cat.bounce {
   animation: bounce;
   animation-duration: 2s;
+}
+
+#cat.hide {
+  display: none;
+}
+
+#mwrar {
+  bottom: 200px;
+  position: fixed;
+  left: 100px;
+  display: none;
+}
+
+#cat:hover + #mwrar {
+  display: block;
 }
 
 .intro {
@@ -106,6 +120,7 @@ input.textField {
   background: none;
   border: none;
   width: 450px;
+  padding-top: 40px;
 }
 
 .placeholder > picture {
@@ -206,8 +221,4 @@ input[type="checkbox"]:checked + span {
 
 .hide {
   display: none;
-}
-
-.showCat {
-  display: flex;
 }

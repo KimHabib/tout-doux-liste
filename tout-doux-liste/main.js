@@ -9,7 +9,7 @@ addItemForm.addEventListener("submit", addNewItem);
 
 // grabs audio files to be played
 const addItemAudio = new Audio("./cat-meow.wav");
-const clearCompletedAudio = new Audio("./cat-success.m4a");
+const clearCompletedAudio = new Audio("./cat_completed.wav");
 // targeting the text field so I can reference it in a function
 const itemName = document.querySelector(".textField");
 // targeting the cat picture so I can reference it in a function
@@ -29,7 +29,8 @@ function addNewItem(event) {
   // hide the placeholder
   placeholder.classList.add("hide");
   // displays the cat on the bottom left
-  catPic.classList.add("showCat");
+  catPic.classList.remove("hide");
+  catPic.classList.add("bounce");
   // pushes what's been entered in the text field and adding it to the end of the array. ".value" will access the text inside a text field //
   listItems.push(itemName.value);
 
@@ -143,9 +144,9 @@ function showActive() {
   }
 }
 
-// the clearAll function starts here
+// the clearCompleted function starts here
 
-function clearAll() {
+function clearCompleted() {
   // targets all the elements on the document with a class of "completed" and stores them in a list called "completedElements"
   const completedElements = document.querySelectorAll(".completed");
 
@@ -153,13 +154,13 @@ function clearAll() {
     // remove the current element from the document - we're targeting the parent so it doesn't remove the checkbox only
     completedElements[i].parentNode.remove();
   }
-}
-// the clearAll function ends here
 
-const clearCompleted = document
-  .querySelector("#clear-complete-btn")
-  .addEventListener("click", clearAll);
-// play audio file we grabbed above
-addItemAudio.play();
+  clearCompletedAudio.play();
+}
+// the clearCompleted function ends here
+
+const clearCompletedButton = document.querySelector("#clear-complete-btn");
+clearCompletedButton.addEventListener("click", clearCompleted);
+
 // 1. search the list for all completed li - go through checkboxes again and check for completed classes
 // 2. we want to prevent them from reappearing when you click show all, so better to remove them from the page - https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove
