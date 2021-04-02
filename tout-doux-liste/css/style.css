@@ -17,11 +17,14 @@ h1 {
   font-size: 40px;
   color: white;
   font-family: "Changa One", cursive;
+  text-shadow: 4px 4px rgb(255, 33, 207);
+  margin-top: 80px;
 }
 
 p {
   color: white;
-  line-height: 20px;
+  line-height: 28px;
+  font-size: 20px;
 }
 
 body {
@@ -30,10 +33,14 @@ body {
   margin: 0;
   height: 100%;
   background-color: #8383ff;
+  background-image: radial-gradient(#5540be 1px, #8383ff 1px);
+  background-size: 20px 20px;
 }
 
 main {
-  width: 450px;
+  width: 500px;
+  z-index: 1;
+  margin-bottom: 80px;
 }
 
 #cat {
@@ -77,6 +84,10 @@ main {
   align-items: center;
 }
 
+form {
+  height: 60px;
+}
+
 form#add-item {
   display: flex;
   align-items: center;
@@ -89,38 +100,52 @@ ul {
 }
 
 li {
-  background-color: black;
+  background-color: #2a1591;
   font-size: 16px;
   color: white;
   min-width: 100%;
+  min-height: 60px;
   padding: 16px;
   border-radius: 4px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(41, 24, 130, 0.26),
+    0 6px 20px 0 rgba(41, 24, 130, 0.25);
 }
 
 input.textField {
-  background-color: black;
-  border: 2px solid white;
+  background-color: #291882;
+  border: none;
   border-radius: 4px;
-  min-height: 44px;
+  min-height: 60px;
   min-width: 70%;
   color: white;
-  font-size: 16px;
-  padding: 8px;
+  font-size: 18px;
+  padding: 20px;
 }
 
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #ccc;
+  color: #fff;
 }
 
 .placeholder {
   background: none;
   border: none;
-  width: 450px;
+  width: 500px;
   padding-top: 40px;
+}
+
+.nothing-completed {
+  background: none;
+  border: none;
+  width: 500px;
+  padding-top: 40px;
+}
+
+.nothing-completed > picture {
+  width: 100%;
 }
 
 .placeholder > picture {
@@ -138,34 +163,35 @@ picture > img {
 }
 
 #submit-btn {
-  background: transparent;
+  background: rgb(255, 33, 207);
   color: white;
-  border: 2px solid white;
+  border: none;
   border-radius: 4px;
   box-shadow: none;
-  min-height: 44px;
-  min-width: 20%;
+  min-height: 60px;
+  min-width: 25%;
   cursor: pointer;
 }
 
 #submit-btn:hover {
-  background-color: #010154;
+  background-color: rgb(213, 0, 167);
 }
 
 #submit-btn:active {
-  background-color: rgb(255, 119, 0);
+  background-color: rgb(255, 33, 207);
 }
 
 #show_completed:active {
-  background-color: red;
+  background-color: rgb(255, 33, 207);
 }
 
 input[type="checkbox"] {
-  height: 20px;
-  width: 20px;
+  height: 28px;
+  width: 28px;
   border-radius: 100px;
   margin-right: 12px;
   border: 2px solid white;
+  filter: hue-rotate(90deg);
 }
 
 input[type="checkbox"]:checked + span {
@@ -195,11 +221,19 @@ input[type="checkbox"]:checked + span {
 
 .tag {
   border: none;
-  background: black;
+  background: #291882;
   padding: 8px;
   color: white;
   min-height: 24px;
-  border-radius: 8px;
+  border-radius: 4px;
+}
+
+.tag:hover {
+  background-color: #5540be;
+}
+
+.tag:active {
+  background-color: rgb(255, 33, 207);
 }
 
 /* Change `display: flex` to `display: none` */
@@ -221,4 +255,17 @@ input[type="checkbox"]:checked + span {
 
 .hide {
   display: none;
+}
+
+p.you-lazy {
+  text-align: center;
+}
+
+.none-completed {
+  padding-top: 40px;
+}
+
+.well-done {
+  padding-top: 8px;
+  padding-bottom: 20px;
 }

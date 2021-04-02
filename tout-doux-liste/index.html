@@ -46,26 +46,40 @@
             minlength="3"
             required
           />
-          <input type="submit" id="submit-btn" class="submit-btn" value="Add" />
+          <input
+            type="submit"
+            id="submit-btn"
+            class="submit-btn"
+            value="Add item"
+          />
         </form>
         <div class="placeholder">
           <picture>
-            <img src="images/busy-cat.gif" class="busy-cat" s />
+            <img src="images/busy-cat.gif" class="busy-cat" />
+          </picture>
+        </div>
+        <div class="none-completed hide">
+          <picture>
+            <img src="images/lazy-cat.gif" class="lazy-cat" />
           </picture>
         </div>
         <ul id="to-do-list"></ul>
+        <div class="well-done hide">
+          <picture>
+            <img src="images/happy-cat.gif" class="well-done" />
+          </picture>
+        </div>
 
         <div class="bottom-line hide">
-          <button id="show_all" class="tag">All</button>
-          <button id="show_active" class="tag">🐈 Active</button>
-          <button id="show_completed" class="tag">😻 Completed</button>
-          <button id="clear-complete-btn" class="tag">Clear complete</button>
+          <button id="show_all" class="tag">See all</button>
+          <button id="show_active" class="tag">See active</button>
+          <button id="show_completed" class="tag">See completed</button>
+          <button id="clear-complete-btn" class="tag">Clear completed</button>
         </div>
       </main>
-      <img src="images/cat.png" id="cat" class="hide" />
-      <img src="images/mwrar.png" id="mwrar" />
     </div>
-
+    <img src="images/cat.png" id="cat" class="hide" />
+    <img src="images/mwrar.png" id="mwrar" />
     <script src="main.js"></script>
   </body>
 </html>

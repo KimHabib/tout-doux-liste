@@ -2,37 +2,40 @@
 const toDoList = document.querySelector("#to-do-list");
 // listen for a button click from the user
 const addItemForm = document.querySelector("#add-item");
-// create an array called listItems
-const listItems = [];
-// add avent listener to the submit button
+// add event listener to the submit button
 addItemForm.addEventListener("submit", addNewItem);
 
 // grabs audio files to be played
 const addItemAudio = new Audio("./cat-meow.wav");
 const clearCompletedAudio = new Audio("./cat_completed.wav");
+const emptyStateAudio = new Audio("./angry-cat.wav");
+const successStateAudio = new Audio("./tambourine.wav");
 // targeting the text field so I can reference it in a function
 const itemName = document.querySelector(".textField");
 // targeting the cat picture so I can reference it in a function
 const catPic = document.querySelector("#cat");
+catPic.addEventListener("mouseenter", playCatNoise);
+
+// function catNoise starts here
+function playCatNoise() {
+  // calls the addItemAudio function so the sound plays
+  clearCompletedAudio.play();
+}
 
 // select the bottom-line container
 const bottomLine = document.querySelector(".bottom-line");
 // select the placeholder
 const placeholder = document.querySelector(".placeholder");
+// select the none completed div
+const noneCompleted = document.querySelector(".none-completed");
+// select the well-done div
+const wellDone = document.querySelector(".well-done");
 
 // function starts here  - anything declared underneath this point applies to this function only (locally scoped) //
 function addNewItem(event) {
   // prevents the page refresh on click
   event.preventDefault();
-  // display the bottom line container
-  bottomLine.classList.remove("hide");
-  // hide the placeholder
-  placeholder.classList.add("hide");
-  // displays the cat on the bottom left
-  catPic.classList.remove("hide");
-  catPic.classList.add("bounce");
-  // pushes what's been entered in the text field and adding it to the end of the array. ".value" will access the text inside a text field //
-  listItems.push(itemName.value);
+  specialEffects();
 
   // creates a new li somewhere on the page
   const li = document.createElement("li");
@@ -54,13 +57,23 @@ function addNewItem(event) {
   toDoList.appendChild(li);
   // resets the text field to nothing - the placeholder text will still display because the string is empty
   itemName.value = "";
-
-  // play audio file we grabbed above
-  addItemAudio.play();
-  // flips the cat picture
-  catPic.classList.add("on-submit");
 }
 // this is where the function ends and all things associated with clicking the "add" button too //
+
+function specialEffects() {
+  // display the bottom line container
+  bottomLine.classList.remove("hide");
+  // hide the placeholder
+  placeholder.classList.add("hide");
+  wellDone.classList.add("hide");
+  // displays the cat on the bottom left
+  catPic.classList.remove("hide");
+  catPic.classList.add("bounce");
+  // play audio file we grabbed above
+  addItemAudio.play();
+  // hides the empty state
+  noneCompleted.classList.add("hide");
+}
 
 // adds an event listener to the whole document (body of the page) - listen for any click on the page
 document.addEventListener("click", function (event) {
@@ -91,7 +104,7 @@ const showActiveTag = document.querySelector("#show_active");
 // add event listener to this tag
 showActiveTag.addEventListener("click", showActive);
 
-// show all function - to set everything in the list to be displayed
+// show all function starts here - to set everything in the list to be displayed
 function showAll() {
   // select all the li on the page
   const showListItems = document.querySelectorAll("li");
@@ -99,6 +112,8 @@ function showAll() {
   for (let i = 0; i < showListItems.length; ++i) {
     showListItems[i].style.display = "flex";
   }
+  noneCompleted.classList.add("hide");
+  wellDone.classList.add("hide");
 }
 // show all ends here
 
@@ -126,7 +141,11 @@ function showCompleted() {
     checkboxList[i].parentNode.style.display = "flex";
   }
   if (checkboxList.length == 0) {
-    alert("You haven't completed anything RAWR 🐯");
+    noneCompleted.classList.remove("hide");
+    emptyStateAudio.play();
+  } else {
+    wellDone.classList.remove("hide");
+    successStateAudio.play();
   }
 }
 // show completed items function ends here
@@ -142,6 +161,8 @@ function showActive() {
     // display each element with a class of active (checkbox parent) on the page
     checkboxList[i].parentNode.style.display = "flex";
   }
+  noneCompleted.classList.add("hide");
+  wellDone.classList.add("hide");
 }
 
 // the clearCompleted function starts here
@@ -156,6 +177,7 @@ function clearCompleted() {
   }
 
   clearCompletedAudio.play();
+  wellDone.classList.add("hide");
 }
 // the clearCompleted function ends here
 
