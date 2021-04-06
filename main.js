@@ -38,28 +38,36 @@ function addNewItem(event) {
   event.preventDefault();
   specialEffects();
 
+  const item = { title: itemName.value, completed: false };
+  addItemToStorage(item);
+
+  // resets the text field to nothing - the placeholder text will still display because the string is empty
+  itemName.value = "";
+}
+// this is where the function ends and all things associated with clicking the "add" button too //
+
+function createItemAsListItem(key, { title, completed }) {
   // creates a new li somewhere on the page
   const li = document.createElement("li");
   // creates a span which will contain the text of the li
   const span = document.createElement("span");
   // this is placing the text we pushed into the array inside the span
-  span.innerText = itemName.value;
+  span.innerText = title;
 
   // creating an input
   const checkbox = document.createElement("input");
   // specifying the type of input to be a checkbox
   checkbox.setAttribute("type", "checkbox");
   // adding the checkbox class that will be defaulted to a class of "active"
-  checkbox.classList.add("checkbox", "active");
+  checkbox.classList.add("checkbox", completed ? "completed" : "active");
+  // should remove the double tracking of completed — we can select based on :checked
+  checkbox.checked = completed;
   // add the checkbox and the span inside of a newly created li
   li.append(checkbox, span);
-
+  li.setAttribute("data-key", key);
   // adds an li to the to do list
   toDoList.appendChild(li);
-  // resets the text field to nothing - the placeholder text will still display because the string is empty
-  itemName.value = "";
 }
-// this is where the function ends and all things associated with clicking the "add" button too //
 
 function specialEffects() {
   // display the bottom line container
@@ -82,6 +90,9 @@ document.addEventListener("click", function (event) {
   if (event.target.classList.contains("checkbox")) {
     // and run this function if that's the case
     classToggle(event.target);
+    let key = event.target.parentNode.getAttribute("data-key");
+    let completed = event.target.classList.contains("completed");
+    updateItemInStorage(key, { completed });
   }
 });
 // toggle classes function starts here - to toggle classes between "completed" and "active"
@@ -188,7 +199,10 @@ function clearCompleted() {
 
   for (let i = 0; i < completedElements.length; i++) {
     // remove the current element from the document - we're targeting the parent so it doesn't remove the checkbox only
+    const key = completedElements[i].parentNode.getAttribute("data-key");
     completedElements[i].parentNode.remove();
+    console.log("clearing", key);
+    deleteItemFromStorage(key);
   }
   if (completedElements.length == 0) {
     noneCompleted.classList.remove("hide");
