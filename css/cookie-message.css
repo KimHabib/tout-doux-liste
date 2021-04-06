@@ -1,0 +1,27 @@
+#cookie-message {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  max-width: 500px;
+  background: #2a15919c;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.5em 0.5em 0 0;
+  border: 2px solid #2a1591;
+  display: flex;
+  align-items: center;
+}
+
+#cookie-message.hide {
+  display: none;
+}
+
+#cookie-message button {
+  border: none;
+  box-shadow: 0.5rem 0.25rem -0.25rem #2a1591;
+  background-color: rgb(255, 33, 207);
+  border-radius: 0.25em;
+  padding: 0.25em;
+  color: white;
+}

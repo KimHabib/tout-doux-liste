@@ -174,7 +174,7 @@ picture > img {
   justify-content: space-between;
 }
 
-#submit-btn {
+.button {
   background: rgb(255, 33, 207);
   color: white;
   border: none;

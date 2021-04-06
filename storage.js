@@ -50,4 +50,29 @@ function loadFromStorage() {
   });
 }
 
+const hideCookieMessageKey = "is-cookie-message-dismissed";
+
+function isCookieMessageDismissed() {
+  return window.localStorage.getItem(hideCookieMessageKey);
+}
+
+function setCookieMessageDismissed() {
+  window.localStorage.setItem(hideCookieMessageKey, true);
+}
+
+const cookieMessage = document.querySelector("#cookie-message");
+const hideCookieMessageButton = document.querySelector("#hide-cookie-message");
+function hideLocalStorageMessage() {
+  setCookieMessageDismissed();
+  cookieMessage.classList.add("hide");
+}
+hideCookieMessageButton.addEventListener("click", hideLocalStorageMessage);
+
+function hideCookieMessageIfAccepted() {
+  if (isCookieMessageDismissed()) {
+    hideLocalStorageMessage();
+  }
+}
+
+hideCookieMessageIfAccepted();
 loadFromStorage();
