@@ -66,7 +66,7 @@ function createItemAsListItem(key, { title, completed }) {
   li.append(checkbox, span);
   li.setAttribute("data-key", key);
   // adds an li to the to do list
-  toDoList.appendChild(li);
+  toDoList.prependChild(li);
 }
 
 function specialEffects() {
