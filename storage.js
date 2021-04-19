@@ -12,7 +12,7 @@ function setList(list) {
 
 function addItemToStorage(item) {
   const list = getList();
-  const key = "item-" + Math.random() * 2 ** 10;
+  const key = "item-" + Math.floor(Math.random() * 2 ** 20);
   list[key] = item;
   // seems wrong to call this file then the other again
   createItemAsListItem(key, item);
