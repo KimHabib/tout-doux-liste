@@ -45,7 +45,11 @@ body {
   background-color: #8383ff;
   background-image: radial-gradient(#5540be 1px, #8383ff 1px);
   background-size: 20px 20px;
-  padding: 1rem;
+}
+
+header {
+  text-align: center;
+  max-width: 500px;
 }
 
 main {
@@ -90,18 +94,19 @@ main {
 }
 
 .intro {
-  text-align: center;
-  max-width: 500px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
 .center {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
 }
 
 form {
@@ -306,7 +311,7 @@ p.you-lazy {
 }
 
 footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 30%;
   display: flex;
