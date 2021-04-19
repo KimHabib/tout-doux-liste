@@ -68,9 +68,24 @@ function createItemAsListItem(key, { title, completed }) {
   checkbox.setAttribute("id", key);
   // add the checkbox and the label inside of a newly created li
   li.append(checkbox, label);
-  li.setAttribute("data-key", key);
   // adds an li to the to do list
   toDoList.appendChild(li);
+
+  const toggleCurrentCompleted = () => toggleCompleted(key, checkbox);
+  li.addEventListener("click", () => {
+    checkbox.checked = !checkbox.checked;
+    toggleCurrentCompleted();
+  });
+  checkbox.addEventListener("change", toggleCurrentCompleted);
+}
+
+function toggleCompleted(key, checkbox) {
+  classToggle(checkbox);
+  const completed = checkbox.checked;
+  updateItemInStorage(key, { completed });
+  if (completed) {
+    showWellDoneOnce();
+  }
 }
 
 function specialEffects() {
@@ -88,17 +103,6 @@ function specialEffects() {
   noneCompleted.classList.add("hide");
 }
 
-// adds an event listener to the whole document (body of the page) - listen for any click on the page
-document.addEventListener("click", function (event) {
-  // check if the element that is clicked on has a class of checkbox
-  if (event.target.classList.contains("checkbox")) {
-    // and run this function if that's the case
-    classToggle(event.target);
-    let key = event.target.parentNode.getAttribute("data-key");
-    let completed = event.target.classList.contains("completed");
-    updateItemInStorage(key, { completed });
-  }
-});
 // toggle classes function starts here - to toggle classes between "completed" and "active"
 function classToggle(element) {
   // this changes the class of the checkbox element (that we referenced in the checkbox variable)
@@ -168,6 +172,12 @@ function showCompleted() {
 function showWellDone() {
   wellDone.classList.remove("hide");
   tambourineAudio.loop = true;
+  tambourineAudio.play();
+}
+
+function showWellDoneOnce() {
+  wellDone.classList.remove("hide");
+  tambourineAudio.addEventListener("ended", hideWellDone);
   tambourineAudio.play();
 }
 

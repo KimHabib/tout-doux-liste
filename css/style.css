@@ -139,6 +139,12 @@ li {
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(41, 24, 130, 0.26),
     0 6px 20px 0 rgba(41, 24, 130, 0.25);
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+}
+
+li:hover {
+  background-color: #5540be;
 }
 
 input.textField {
@@ -225,8 +231,14 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-input[type="checkbox"]:checked + span {
+input[type="checkbox"] + label {
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label {
   text-decoration: line-through;
+  text-decoration-thickness: 12.5%;
+  text-decoration-color: #ff00c8;
 }
 
 .tick {
