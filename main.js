@@ -49,10 +49,12 @@ function addNewItem(event) {
 function createItemAsListItem(key, { title, completed }) {
   // creates a new li somewhere on the page
   const li = document.createElement("li");
-  // creates a span which will contain the text of the li
-  const span = document.createElement("span");
-  // this is placing the text we pushed into the array inside the span
-  span.innerText = title;
+  // creates a label for the checkbox item
+  const label = document.createElement("label");
+  // this is placing the text we pushed into the array inside the label
+  label.innerText = title;
+  // label 'for' attribute is the key to match checkbox id
+  label.setAttribute("for", key);
 
   // creating an input
   const checkbox = document.createElement("input");
@@ -62,8 +64,10 @@ function createItemAsListItem(key, { title, completed }) {
   checkbox.classList.add("checkbox", completed ? "completed" : "active");
   // should remove the double tracking of completed — we can select based on :checked
   checkbox.checked = completed;
-  // add the checkbox and the span inside of a newly created li
-  li.append(checkbox, span);
+  // checkbox id is the key to match label 'for'
+  checkbox.setAttribute("id", key);
+  // add the checkbox and the label inside of a newly created li
+  li.append(checkbox, label);
   li.setAttribute("data-key", key);
   // adds an li to the to do list
   toDoList.appendChild(li);
