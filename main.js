@@ -72,6 +72,9 @@ function createItemAsListItem(key, { title, completed }) {
   toDoList.appendChild(li);
 
   const toggleCurrentCompleted = () => toggleCompleted(key, checkbox);
+  checkbox.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
   li.addEventListener("click", () => {
     checkbox.checked = !checkbox.checked;
     toggleCurrentCompleted();
