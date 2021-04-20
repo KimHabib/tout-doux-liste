@@ -211,6 +211,7 @@ function showWellDoneOnce() {
 function hideWellDone() {
   wellDone.classList.add("hide");
   tambourineAudio.loop = false;
+  tambourineAudio.currentTime = 0; // start
   tambourineAudio.pause();
 }
 
