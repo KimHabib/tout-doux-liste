@@ -50,13 +50,24 @@ function createItemAsListItem(key, { title, completed }) {
   // creates a new li somewhere on the page
   const li = document.createElement("li");
   // creates a label for the checkbox item
-  const label = document.createElement("label");
-  // this is placing the text we pushed into the array inside the label
-  label.innerText = title;
-  // label 'for' attribute is the key to match checkbox id
-  label.setAttribute("for", key);
-
+  const label = createLabel({ key, title });
   // creating an input
+  const checkbox = createCheckbox({ completed, key });
+  const removeButton = createRemoveButtonFor(checkbox);
+  // add the checkbox and the label inside of a newly created li
+  li.append(checkbox, label, removeButton);
+  // adds an li to the to do list
+  toDoList.appendChild(li);
+
+  const toggleCurrentCompleted = () => toggleCompleted(key, checkbox);
+  li.addEventListener("click", () => {
+    checkbox.checked = !checkbox.checked;
+    toggleCurrentCompleted();
+  });
+  checkbox.addEventListener("change", toggleCurrentCompleted);
+}
+
+function createCheckbox({ completed, key }) {
   const checkbox = document.createElement("input");
   // specifying the type of input to be a checkbox
   checkbox.setAttribute("type", "checkbox");
@@ -66,29 +77,33 @@ function createItemAsListItem(key, { title, completed }) {
   checkbox.checked = completed;
   // checkbox id is the key to match label 'for'
   checkbox.setAttribute("id", key);
-  // add the checkbox and the label inside of a newly created li
-  li.append(checkbox, label);
-  // adds an li to the to do list
-  toDoList.appendChild(li);
+  checkbox.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+  return checkbox;
+}
 
+function createLabel({ title, key }) {
+  const label = document.createElement("label");
+  // this is placing the text we pushed into the array inside the label
+  label.innerText = title;
+  // label 'for' attribute is the key to match checkbox id
+  label.setAttribute("for", key);
+  label.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+  return label;
+}
+
+function createRemoveButtonFor(checkbox) {
   const removeButton = document.createElement("button");
   removeButton.innerText = "🗑";
-  li.append(removeButton);
   removeButton.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
     removeItemFromList(checkbox);
   });
-
-  const toggleCurrentCompleted = () => toggleCompleted(key, checkbox);
-  checkbox.addEventListener("click", (event) => {
-    event.stopPropagation();
-  });
-  li.addEventListener("click", () => {
-    checkbox.checked = !checkbox.checked;
-    toggleCurrentCompleted();
-  });
-  checkbox.addEventListener("change", toggleCurrentCompleted);
+  return removeButton;
 }
 
 function toggleCompleted(key, checkbox) {
