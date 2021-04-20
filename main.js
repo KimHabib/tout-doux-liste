@@ -53,7 +53,7 @@ function createItemAsListItem(key, { title, completed }) {
   const label = createLabel({ key, title });
   // creating an input
   const checkbox = createCheckbox({ completed, key });
-  const removeButton = createRemoveButtonFor(checkbox);
+  const removeButton = createRemoveButtonFor(checkbox, { title });
   // add the checkbox and the label inside of a newly created li
   li.append(checkbox, label, removeButton);
   // adds an li to the to do list
@@ -95,9 +95,10 @@ function createLabel({ title, key }) {
   return label;
 }
 
-function createRemoveButtonFor(checkbox) {
+function createRemoveButtonFor(checkbox, { title }) {
   const removeButton = document.createElement("button");
   removeButton.innerText = "🗑";
+  removeButton.title = `Remove ${title}`;
   removeButton.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
