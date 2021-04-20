@@ -71,6 +71,15 @@ function createItemAsListItem(key, { title, completed }) {
   // adds an li to the to do list
   toDoList.appendChild(li);
 
+  const removeButton = document.createElement("button");
+  removeButton.innerText = "🗑";
+  li.append(removeButton);
+  removeButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    removeItemFromList(checkbox);
+  });
+
   const toggleCurrentCompleted = () => toggleCompleted(key, checkbox);
   checkbox.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -214,13 +223,7 @@ function clearCompleted() {
   // targets all the elements on the document with a class of "completed" and stores them in a list called "completedElements"
   const completedElements = document.querySelectorAll(".completed");
 
-  for (let i = 0; i < completedElements.length; i++) {
-    // remove the current element from the document - we're targeting the parent so it doesn't remove the checkbox only
-    const key = completedElements[i].parentNode.getAttribute("data-key");
-    completedElements[i].parentNode.remove();
-    console.log("clearing", key);
-    deleteItemFromStorage(key);
-  }
+  completedElements.forEach(removeItemFromList);
   if (completedElements.length == 0) {
     noneCompleted.classList.remove("hide");
     angryAudio.play();
@@ -231,6 +234,13 @@ function clearCompleted() {
   }
 }
 // the clearCompleted function ends here
+
+function removeItemFromList(checkbox) {
+  const key = checkbox.getAttribute("id");
+  checkbox.parentNode.remove();
+  console.log("clearing", key);
+  deleteItemFromStorage(key);
+}
 
 // 1. search the list for all completed li - go through checkboxes again and check for completed classes
 // 2. we want to prevent them from reappearing when you click show all, so better to remove them from the page - https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove

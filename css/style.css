@@ -137,6 +137,7 @@ li {
   margin-bottom: 8px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   box-shadow: 0 4px 8px 0 rgba(41, 24, 130, 0.26),
     0 6px 20px 0 rgba(41, 24, 130, 0.25);
   transition: background-color 0.5s ease;
@@ -145,6 +146,12 @@ li {
 
 li:hover {
   background-color: #5540be;
+}
+
+li button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 input.textField {
