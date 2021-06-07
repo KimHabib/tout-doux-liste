@@ -5,12 +5,6 @@ const addItemForm = document.querySelector("#add-item");
 // add event listener to the submit button
 addItemForm.addEventListener("submit", addNewItem);
 
-// grabs audio files to be played
-const meowAudio = new Audio("./cat-meow.wav");
-const cuteMeowAudio = new Audio("./cute-meow.wav");
-const purrAudio = new Audio("./cat-purr.wav");
-const angryAudio = new Audio("./angry-cat.wav");
-const tambourineAudio = new Audio("./tambourine.wav");
 // targeting the text field so I can reference it in a function
 const itemName = document.querySelector(".textField");
 // targeting the cat picture so I can reference it in a function
@@ -126,7 +120,7 @@ function specialEffects() {
   catPic.classList.remove("hide");
   catPic.classList.add("bounce");
   // play audio file we grabbed above
-  meowAudio.play();
+  playAudio("simple");
   // hides the empty state
   noneCompleted.classList.add("hide");
 }
@@ -190,7 +184,7 @@ function showCompleted() {
   }
   if (checkboxList.length == 0) {
     noneCompleted.classList.remove("hide");
-    angryAudio.play();
+    play("invalid");
   } else {
     showWellDone();
   }
@@ -199,21 +193,17 @@ function showCompleted() {
 
 function showWellDone() {
   wellDone.classList.remove("hide");
-  tambourineAudio.loop = true;
-  tambourineAudio.play();
+  playAudio("success");
 }
 
 function showWellDoneOnce() {
   wellDone.classList.remove("hide");
-  tambourineAudio.addEventListener("ended", hideWellDone);
-  tambourineAudio.play();
+  playAudio("success", hideWellDone);
 }
 
 function hideWellDone() {
   wellDone.classList.add("hide");
-  tambourineAudio.loop = false;
-  tambourineAudio.currentTime = 0; // start
-  tambourineAudio.pause();
+  stopAudio("success");
 }
 
 // show active items function starts here
